@@ -1,7 +1,12 @@
-.isCompleted{
-    text-decoration: line-through;
-    color: #900;
-}
+
 .common{
     color: #09f;
+    cursor: pointer;
+}
+.isCompleted{
+    text-decoration: line-through;
+    color: pink;
+}
+.inputWidth{
+    width: 150px;
 }

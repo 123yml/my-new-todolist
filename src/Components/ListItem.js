@@ -7,7 +7,6 @@ export default class ListItem extends Component{
         onClick(id);
     }
     render(){
-        console.log(this.props)
         return (
             <li 
                 onClick={ this.handleClick }

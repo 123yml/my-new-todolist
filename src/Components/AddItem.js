@@ -6,16 +6,17 @@ import React, { Component, Fragment } from 'react'
 class AddItem extends Component{
     handleBtnClick = () => {
         const { onClick } = this.props;
-
+        onClick()
     }
-    inputChange = () => {
-
+    inputChange = (e) => {
+        const { onChange } = this.props;
+        onChange(e.target.value)
     }
     render (){
         return (
              <Fragment>
             <input 
-                className='input is-primary'
+                className='input is-primary inputWidth'
                 type='text'
                 value={this.props.inputValue}
                 onChange={this.inputChange}

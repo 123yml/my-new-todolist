@@ -17,16 +17,30 @@ class App extends Component {
     }
   }
 
-  inputChange(newInput){
-    this.state.inputValue = newInput;
+  handleInputChange(newInput){
+    this.setState({
+      inputValue: newInput
+    })
   }
 
   handleAddClick(){
-    const { todos } = this.state;
+    const { todos, inputValue, nextId } = this.state;
+    if(inputValue){
+      this.setState({
+        todos:[
+          ...todos,
+          {
+            id: nextId,
+            title: inputValue,
+            isComplete: false
+          }
+        ],
+        nextId:nextId+1
+      })
+    }
   }
 
   handleItemClick(id){
-    console.log(id)
     const { todos } = this.state;
     const newTodos = todos.map(curr => {
       return (
@@ -47,8 +61,16 @@ class App extends Component {
   }
 
   render() {
+    const count = this.state.todos.length;
     return (
       <Fragment>
+        <h1>Todo List <span>总任务数: {count}</span></h1>
+        <AddItem
+          onClick={ this.handleAddClick.bind(this) }
+          inputValue={ this.inputValue }
+          onChange={ this.handleInputChange.bind(this) }
+        >       
+        </AddItem>
         <ul>
           {
             this.state.todos.map(
@@ -66,12 +88,7 @@ class App extends Component {
             })
           }
         </ul>
-        <AddItem
-          onClick={ this.handleAddClick.bind(this) }
-          inputValue={ this.inputValue }
-          onChange={ this.inputChange }
-        >       
-        </AddItem>
+        
     </Fragment>
     )
   }
